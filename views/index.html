@@ -39,7 +39,7 @@
     <div id='testui' style='margin-left: 5%'>
       <h2 style="text-align: left">API Tests:</h2>
       <h3>Submit issue on <i>apitest</i></h3>
-      <form id="testForm" class="border">
+      <form action="/api/issues/apitest" method="POST" id="testForm" class="border">
         <input type="text" name="issue_title" placeholder="*Title" style="width: 100px" required=''><br>
         <textarea type="text" name="issue_text" placeholder="*Text" style="width: 100px" required=''></textarea><br>
         <input type="text" name="created_by" placeholder="*Created by" style="width: 100px" required=''><br>
@@ -72,35 +72,26 @@
             crossorigin="anonymous"></script>
     <script>
       $(function() {
-        $('#testForm').submit(function(e) {
-          $.ajax({
-            url: '/api/issues/apitest',
-            type: 'post',
-            data: $('#testForm').serialize(),
-            success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
-            }
-          });
-          e.preventDefault();
-        });
         $('#testForm2').submit(function(e) {
+          var url = '/api/issues/apitest';
           $.ajax({
-            url: '/api/issues/apitest',
-            type: 'put',
-            data: $('#testForm2').serialize(),
+            type: 'PUT',
+            url: url,
+            data: $(this).serialize(),
             success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
+              alert('_id: ' + data._id + '\nassigned_to: ' + data.assigned_to + '\ncreated_by: ' + data.created_by + '\ncreated_on: ' + data.created_on + '\nissue_text: ' + data.issue_text + '\nissue_title: ' + data.issue_title + '\nopen: ' + data.open + '\nproject: ' + data.project + '\nstatus_text: ' + data.status_text + '\nupdated_on: ' + data.updated_on);
             }
           });
           e.preventDefault();
         });
         $('#testForm3').submit(function(e) {
+          var url = '/api/issues/apitest';
           $.ajax({
-            url: '/api/issues/apitest',
-            type: 'delete',
-            data: $('#testForm3').serialize(),
+            type: 'DELETE',
+            url: url,
+            data: $(this).serialize(),
             success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
+              alert(data);
             }
           });
           e.preventDefault();

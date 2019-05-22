@@ -9,3 +9,10 @@ Project Issue Tracker
 4) You will create all of the functional tests in `tests/2_functional-tests.js`
 
 
+Test your project here:
+
+* [Legacy test suite](https://legacy-fcc-test-suite.glitch.me/)
+
+* [Another](https://pricey-hugger.glitch.me/)
+
+Status: Done!

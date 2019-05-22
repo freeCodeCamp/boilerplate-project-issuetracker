@@ -29,8 +29,8 @@ var ProjectSchema = new Schema({
 
 var Project = mongoose.model('Project', ProjectSchema);
 
-var CONNECTION_STRING=process.env.CONNECTION_STRING? process.env.CONNECTION_STRING:
- 'mongodb://freecodecampjfse:freecodecampjfse@cluster0-shard-00-00-d6jzq.mongodb.net:27017,cluster0-shard-00-01-d6jzq.mongodb.net:27017,cluster0-shard-00-02-d6jzq.mongodb.net:27017/fcc?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
+var CONNECTION_STRING=process.env.CONNECTION_STRING? process.env.CONNECTION_STRING:'mongodb://127.0.0.1:27017/fcc';
+ //'mongodb://freecodecampjfse:freecodecampjfse@cluster0-shard-00-00-d6jzq.mongodb.net:27017,cluster0-shard-00-01-d6jzq.mongodb.net:27017,cluster0-shard-00-02-d6jzq.mongodb.net:27017/fcc?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
 mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true });
 
 module.exports = function (app) {
@@ -93,15 +93,11 @@ module.exports = function (app) {
                 if(req.body.created_by) {proj.created_by = req.body.created_by; }
                 if(req.body.assigned_to) {proj.assigned_to = req.body.assigned_to; }
                 if(req.body.status_text) {proj.status_text = req.body.status_text; }
-                proj.open = req.body.open;
+                if(req.body.open !== undefined){ proj.open = req.body.open; }
                 proj.save((err, updateData)=> {
-                      if(err){
-                        res.send('missing inputs');
-                      } else {
-                        res.send('successfully updated');
-                      }
                 });
               });
+            res.send('successfully updated');
           }
         })
       })

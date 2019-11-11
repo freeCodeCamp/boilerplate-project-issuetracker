@@ -12,7 +12,7 @@ var expect = require('chai').expect;
 var MongoClient = require('mongodb');
 var ObjectId = require('mongodb').ObjectID;
 
-module.exports = function (app) {
+module.exports = function (app, DB) {
 
   app.route('/api/issues/:project')
   

@@ -19,7 +19,7 @@ suite('Functional Tests', function() {
       
       test('Every field filled in', function(done) {
        chai.request(server)
-        .post('/api/issues/test')
+        .post('/api/issues/esol')
         .send({
           issue_title: 'Title',
           issue_text: 'text',
@@ -29,9 +29,7 @@ suite('Functional Tests', function() {
         })
         .end(function(err, res){
           assert.equal(res.status, 200);
-          
-          //fill me in too!
-          
+          assert.property(res.body, 'Inserted');
           done();
         });
       });

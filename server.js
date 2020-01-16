@@ -5,12 +5,16 @@ var bodyParser  = require('body-parser');
 var expect      = require('chai').expect;
 var cors        = require('cors');
 
-var apiRoutes         = require('./routes/api.js');
-var fccTestingRoutes  = require('./routes/fcctesting.js');
+var apiRoutes         = require('./routes/api');
+var fccTestingRoutes  = require('./routes/fcctesting');
 var runner            = require('./test-runner');
+var helmet = require('helmet');
 
 var app = express();
 
+app.use(helmet({
+  xssFilter:true
+}))
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
@@ -21,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Sample front-end
-app.route('/:project/')
+app.route('/project/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/issue.html');
   });

@@ -69,7 +69,32 @@ MongoClient.connect(CONNECTION_STRING,
     
     .put(function (req, res){
       var project = req.params.project;
-      
+      const updatedObject = {updated_on: new Date()}
+
+      Object.keys(req.body).forEach(key => {
+        if(req.body[key] !== ''){
+	  updatedObject[key] = req.body[key];
+ 	}
+      });
+
+      delete updatedObject._id;
+
+      if(Object.keys(updatedObject).length === 1){
+        res.type('text').send('no updated field sent');
+      }
+
+      db.collection(project)
+        .updateOne({_id: ObjectId(req.body._id)},
+          {$set: updatedObject},
+	  function(err, result){
+	   if(result.result.n === 1){
+             res.type('text')
+ 		.send('Successfully updated');
+  	   } else {
+             res.type('text')
+   		.send('Could not update '+_id);
+           }
+        }) 
     })
     
     .delete(function (req, res){

@@ -4,6 +4,7 @@ var express     = require('express');
 var bodyParser  = require('body-parser');
 var expect      = require('chai').expect;
 var cors        = require('cors');
+let helmet	= require('helmet');
 
 var apiRoutes         = require('./routes/api.js');
 var fccTestingRoutes  = require('./routes/fcctesting.js');
@@ -11,6 +12,7 @@ var runner            = require('./test-runner');
 
 var app = express();
 
+app.use(helmet());
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only

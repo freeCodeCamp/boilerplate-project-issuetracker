@@ -25,9 +25,16 @@ MongoClient.connect(CONNECTION_STRING,
 
     .get(function (req, res){
       var project = req.params.project;
+      let queryObject = {};
+
+      Object.keys(req.query)
+        .forEach(key => {
+         queryObject[key] = req.query[key] == 'true' ? true : req.query[key];
+      });
+      console.log(queryObject);
 
       db.collection(project)
-        .find({}).toArray((err,docs)=>{
+        .find(queryObject).toArray((err,docs)=>{
           if(err){ console.log(err); }
 	  res.json(docs);
         });      

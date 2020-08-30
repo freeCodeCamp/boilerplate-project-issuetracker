@@ -31,7 +31,6 @@ MongoClient.connect(CONNECTION_STRING,
         .forEach(key => {
          queryObject[key] = req.query[key] == 'true' ? true : req.query[key];
       });
-      console.log(queryObject);
 
       db.collection(project)
         .find(queryObject).toArray((err,docs)=>{
@@ -64,7 +63,6 @@ MongoClient.connect(CONNECTION_STRING,
           open
         }, (err, result)=>{
           if(err){console.log(err);}
-          //console.log(result);
   	  res.json(result.ops[0]);
         });
     })
@@ -77,6 +75,20 @@ MongoClient.connect(CONNECTION_STRING,
     .delete(function (req, res){
       var project = req.params.project;
       
+      const _id = req.body._id;
+
+      if(!_id){
+        res.type('text').send('_id error');
+      } 
+
+      db.collection(project)
+        .deleteOne({_id: ObjectId(_id)},
+          (err, result)=>{
+  	   if(result.result.n === 1){
+             res.json({success: 'deleted '+_id});
+  	   }
+             res.json({failed: 'could not delete '+_id});
+        })
     });
 
     app.use((req,res,next)=>{

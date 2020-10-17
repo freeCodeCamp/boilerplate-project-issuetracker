@@ -49,14 +49,6 @@ module.exports = function (app) {
         res.type('txt').send(data.toString());
       });
     });
-  app.route('/_api/controllers/convertHandler.js')
-    .get(function(req, res, next) {
-      console.log('requested');
-      fs.readFile(__dirname + '/controllers/convertHandler.js', function(err, data) {
-        if(err) return next(err);
-        res.type('txt').send(data.toString());
-      });
-    });
     
   let error;
   app.get('/_api/get-tests', cors(), function(req, res, next){
@@ -73,15 +65,6 @@ module.exports = function (app) {
       process.nextTick(() =>  res.json(testFilter(runner.report, req.query.type, req.query.n)));
     });
   });
-  app.get('/_api/app-info', function(req, res) {
-    let hs = Object.keys(res._headers)
-      .filter(h => !h.match(/^access-control-\w+/));
-    let hObj = {};
-    hs.forEach(h => {hObj[h] = res._headers[h]});
-    delete res._headers['strict-transport-security'];
-    res.json({headers: hObj});
-  });
-  
 };
 
 function testFilter(tests, type, n) {

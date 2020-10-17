@@ -37,20 +37,20 @@
             crossorigin="anonymous"></script>
     <script>
       $(function() {
-        var currentProject = window.location.pathname.replace(/\//g, "");;
-        var url = "/api/issues/"+currentProject;
+        let currentProject = window.location.pathname.replace(/\//g, "");;
+        let url = "/api/issues/"+currentProject;
         $('#projectTitle').text('All issues for: '+currentProject)
         $.ajax({
           type: "GET",
           url: url,
           success: function(data)
           {
-            var issues= [];
+            let issues= [];
             data.forEach(function(ele) {
               console.log(ele);
-              var openstatus;
+              let openstatus;
               (ele.open) ? openstatus = 'open' : openstatus = 'closed';
-              var single = [
+              let single = [
                 '<div class="issue '+openstatus+'">',
                 '<p class="id">id: '+ele._id+'</p>',
                 '<h3>'+ele.issue_title+' -  ('+openstatus+')</h3>',
@@ -82,7 +82,7 @@
         });
         
         $('#issueDisplay').on('click','.closeIssue', function(e) {
-          var url = "/api/issues/"+currentProject;
+          let url = "/api/issues/"+currentProject;
           $.ajax({
             type: "PUT",
             url: url,
@@ -92,7 +92,7 @@
           e.preventDefault();
         });
         $('#issueDisplay').on('click','.deleteIssue', function(e) {
-          var url = "/api/issues/"+currentProject;
+          let url = "/api/issues/"+currentProject;
           $.ajax({
             type: "DELETE",
             url: url,

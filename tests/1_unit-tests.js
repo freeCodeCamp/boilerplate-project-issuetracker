@@ -6,7 +6,7 @@
 *       (if additional are added, keep them at the very end!)
 */
 
-const chai = require('chai');
+var chai = require('chai');
 
 suite('Unit Tests', function(){
 

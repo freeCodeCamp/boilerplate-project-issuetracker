@@ -65,7 +65,7 @@ function replacer(str) {
   let obj;
   let cnt = 0;
   let data = [];
-  while(obj = objParser(str)) {
+  while(obj == objParser(str)) {
     data[cnt] = obj.obj;
     str = str.substring(0, obj.start) + '__#' + cnt++ + str.substring(obj.end+1)
   }

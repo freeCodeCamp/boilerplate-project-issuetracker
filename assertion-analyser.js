@@ -62,12 +62,13 @@ function objParser(str, init) {
 
 function replacer(str) {
   // replace objects with a symbol ( __#n)
-  let obj;
   let cnt = 0;
   let data = [];
-  while(obj == objParser(str)) {
+  let obj = objParser(str);
+  while(obj) {
     data[cnt] = obj.obj;
-    str = str.substring(0, obj.start) + '__#' + cnt++ + str.substring(obj.end+1)
+    str = str.substring(0, obj.start) + '__#' + cnt++ + str.substring(obj.end+1);
+    objParser(str);
   }
   return {
     str : str,

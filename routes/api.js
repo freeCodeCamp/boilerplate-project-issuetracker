@@ -8,12 +8,6 @@
 
 'use strict';
 
-const expect = require('chai').expect;
-const MongoClient = require('mongodb');
-const ObjectId = require('mongodb').ObjectID;
-
-const CONNECTION_STRING = process.env.DB; //MongoClient.connect(CONNECTION_STRING, function(err, db) {});
-
 module.exports = function (app) {
 
   app.route('/api/issues/:project')

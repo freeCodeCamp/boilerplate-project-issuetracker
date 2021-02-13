@@ -35,16 +35,16 @@ module.exports = function (app) {
 
   app.route('/_api/server.js')
     .get(function(req, res, next) {
-      console.log('requested');
-      fs.readFile(__dirname + '/server.js', function(err, data) {
+      console.log('requested server.js');
+      fs.readFile(__dirname + '/../server.js', function(err, data) {
         if(err) return next(err);
         res.send(data.toString());
       });
     });
   app.route('/_api/routes/api.js')
     .get(function(req, res, next) {
-      console.log('requested');
-      fs.readFile(__dirname + '/routes/api.js', function(err, data) {
+      console.log('requested api.js');
+      fs.readFile(__dirname + '/api.js', function(err, data) {
         if(err) return next(err);
         res.type('txt').send(data.toString());
       });
@@ -52,7 +52,8 @@ module.exports = function (app) {
     
   let error;
   app.get('/_api/get-tests', cors(), function(req, res, next){
-    console.log(error);
+    console.log('requested tests');
+    if(error) console.log(error);
     if(!error && process.env.NODE_ENV === 'test') return next();
     res.json({status: 'unavailable'});
   },

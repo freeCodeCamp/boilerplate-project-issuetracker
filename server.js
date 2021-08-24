@@ -55,8 +55,8 @@ const listener = app.listen(process.env.PORT || 3000, function () {
       try {
         runner.run();
       } catch(e) {
-          console.log('Tests are not valid:');
-          console.error(e);
+        console.log('Tests are not valid:');
+        console.error(e);
       }
     }, 3500);
   }

@@ -1,41 +1,45 @@
 {
-	"name": "my-hyperdev-app",
-	"version": "0.0.1",
-	"description": "What am I about?",
-	"main": "server.js",
-	"scripts": {
-		"start": "node server.js",
-		"test": "cross-env NODE_ENV=test mocha -u tdd --full-trace tests/*.js"
-	},
-	"dependencies": {
-		"body-parser": "^1.15.2",
-		"chai": "^3.5.0",
-		"chai-http": "^4.3.0",
-		"core-js": "^3.1.1",
-		"cors": "^2.8.1",
-		"express": "^4.14.0",
-		"helmet": "^3.1.0",
-		"mongodb": "^3.1.13",
-		"mongoose": "^5.5.10",
-		"zombie": "^6.1.4"
-	},
-	"engines": {
-		"node": "4.4.3"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://hyperdev.com/#!/project/welcome-project"
-	},
-	"keywords": [
-		"node",
-		"hyperdev",
-		"express"
-	],
-	"license": "MIT",
-	"devDependencies": {
-		"cross-env": "^5.2.0",
-		"chai": "^3.5.0",
-		"chai-http": "^4.3.0",
-		"mocha": "^6.1.4"
-	}
+  "name": "my-hyperdev-app",
+  "version": "0.0.1",
+  "description": "What am I about?",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "cross-env NODE_ENV=test mocha -u tdd --full-trace tests/*.js",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
+    "chai-http": "^4.3.0",
+    "core-js": "^3.1.1",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "helmet": "^3.1.0",
+    "mongodb": "^3.1.13",
+    "mongoose": "^6.0.4",
+    "zombie": "^6.1.4",
+    "@snyk/protect": "latest"
+  },
+  "engines": {
+    "node": "4.4.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://hyperdev.com/#!/project/welcome-project"
+  },
+  "keywords": [
+    "node",
+    "hyperdev",
+    "express"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "chai": "^3.5.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.1.4"
+  },
+  "snyk": true
 }

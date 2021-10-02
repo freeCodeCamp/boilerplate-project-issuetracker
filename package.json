@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "helmet": "^3.1.0",
     "mongodb": "^3.1.13",
-    "mongoose": "^6.0.4",
+    "mongoose": "^6.0.5",
     "zombie": "^6.1.4",
     "@snyk/protect": "1.704.0"
   },

@@ -20,7 +20,7 @@
     "mongodb": "^3.7.2",
     "mongoose": "^6.0.9",
     "zombie": "^6.1.4",
-    "@snyk/protect": "1.731.0"
+    "@snyk/protect": "1.733.0"
   },
   "engines": {
     "node": "4.4.3"
